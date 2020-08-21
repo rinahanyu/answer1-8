@@ -7,17 +7,21 @@
 .list-item {
   margin-top: 50px;
 }
+/* marginの指定の方法がもっと簡単にできた（mainで）。全体像で見て判断した方が良い */
 
-li:nth-child(odd) {
+.list:nth-child(odd) {
   background-color: #f2f2f2;
 }
+/* liでなくても、擬似クラスは指定できる。 */
 
 .list {
   list-style: none;
   width: 960px;
   padding: 20px 0;
   padding-left: 20px;
+  /* paddingは全て20pxでも問題なかった。背景色を使用しており、枠内の余白だから、仕上がりに影響なし。 */
   margin: 0 auto;
+  /* width、margin（中央揃え）については、listとboxでそれぞれ指定するよりも、mainでまとめて指定すると楽だった。 */
 }
 
 .box-item {
@@ -32,6 +36,7 @@ li:nth-child(odd) {
   height: 200px;
   margin-bottom: 40px;
 }
+/* %をpxに直して指定しなくても、該当要素に対するfloat: leftだけで％のままで順番通りに並ぶ。 */
 
 .box:nth-child(1) {
   background-color: orange;
@@ -74,3 +79,8 @@ li:nth-child(odd) {
 .box:nth-child(9) {
   background-color: orange;
 }
+/* 一つずつ指定しなくても、同じ指定に関してはクラス名を、で区切って一度に処理可。
+擬似クラスでは、（nによる数式）での表現方法もあり。
+一部のクラスに対して指定を変えたい場合には、はじめにクラスで全体の指定後、擬似クラスで一部に対する指定をしてあげる。（詳細度の大きいセレクタ順あり）
+last child(n)については、後ろから何番目という意味となる。
+(n+2)は２番目以降、(n-2)は２番目以前のという意味になる。 */
